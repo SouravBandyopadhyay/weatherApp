@@ -51,7 +51,7 @@ export default function Othercities() {
                 <Td fontWeight={600} textColor="facebook.600">
                   {cities[index].name}
                 </Td>
-                <Td isNumeric>{weather.main.temp}°C</Td>
+                <Td isNumeric fontWeight="bold">{weather.main.temp}°C</Td>
               </Tr>
             ))}
           </Tbody>

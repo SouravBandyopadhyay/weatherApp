@@ -44,10 +44,10 @@ const Weather = (props) => {
             </HStack>
 
             <Text fontSize="lg" fontWeight="400">
-              Temperature Maximum: <strong>{props.data.temp_max} </strong>°C
+              Temperature Max: <strong>{props.data.temp_max} </strong>°C
             </Text>
             <Text fontSize="lg" fontWeight="400">
-              Temperature Minimum: <strong>{props.data.temp_min} </strong>°C
+              Temperature Min: <strong>{props.data.temp_min} </strong>°C
             </Text>
           </VStack>
         </CardBody>
@@ -74,7 +74,7 @@ const Weather = (props) => {
                     Sunrise Time : <strong>{props.data.sunrise}</strong>
                   </Text>
                   <Text fontSize="lg" fontWeight="400">
-                    Sunrise Time : <strong>{props.data.sunset}</strong>
+                    Sunset Time : <strong>{props.data.sunset}</strong>
                   </Text>
                   <Text fontSize="lg" fontWeight="400">
                     Wind Speed : <strong>{props.data.wind}</strong> meter/sec

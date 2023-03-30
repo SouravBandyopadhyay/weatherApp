@@ -10,6 +10,7 @@ import React from "react";
 import { useState } from "react";
 import { FORECAST_API_URL, WEATHER_API_KEY } from "./api";
 import { WEATHER_API_URL } from "./api";
+import Footer from "./Footer";
 import Othercities from "./ForeCast";
 import ForeCast from "./ForeCast";
 import { ForeCastChart } from "./ForeCastChart";
@@ -40,8 +41,8 @@ const HomePage = () => {
     wind: 1.03,
     weather_status: "Haze",
     pressure: 1011,
-    sunrise: "6:23:00 am",
-    sunset: "6:49:00 pm",
+    sunrise: "6:23:39 am",
+    sunset: "6:49:15 pm",
   }); //object
   const [forecast, setForecast] = useState([]); //array
   const [city, setCity] = useState(""); // string
@@ -70,7 +71,7 @@ const HomePage = () => {
           sunset: changeTime(weatherResponse.sys.sunset),
         });
         setForecast(forcastResponse.list);
-        // console.log(weatherResponse, forcastResponse.list);
+        console.log(weatherResponse, forcastResponse.list);
       })
       .catch(console.log);
   };
@@ -105,6 +106,7 @@ const HomePage = () => {
         {forecast.length > 0 ? <ForeCastChart data={forecast} /> : null}
       </Box>
       <Othercities />
+      <Footer marginTop="auto" />
     </Box>
   );
 };
