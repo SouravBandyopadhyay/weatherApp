@@ -43,9 +43,9 @@ const HomePage = () => {
     pressure: 1011,
     sunrise: "6:23:39 am",
     sunset: "6:49:15 pm",
-  }); //object
-  const [forecast, setForecast] = useState([]); //array
-  const [city, setCity] = useState(""); // string
+  });
+  const [forecast, setForecast] = useState([]);
+  const [city, setCity] = useState("");
 
   const handleClick = () => {
     const currentWeatherFetch = fetch(
@@ -57,7 +57,7 @@ const HomePage = () => {
     Promise.all([currentWeatherFetch, forecastFetch])
       .then(async (response) => {
         const weatherResponse = await response[0].json();
-        const forcastResponse = await response[1].json();
+        const forecastResponse = await response[1].json();
         setData({
           city_name: weatherResponse.name,
           temp: weatherResponse.main.temp,
@@ -70,43 +70,37 @@ const HomePage = () => {
           sunrise: changeTime(weatherResponse.sys.sunrise),
           sunset: changeTime(weatherResponse.sys.sunset),
         });
-        setForecast(forcastResponse.list);
-        console.log(weatherResponse, forcastResponse.list);
+        setForecast(forecastResponse.list);
       })
       .catch(console.log);
   };
+
   return (
-    <Box>
-      <SimpleGrid
-        gridTemplateColumns={["1fr", "1.4fr 0.6fr"]}
-        justifyContent="space-between"
-        bgColor="gray.200"
-      >
-        <HStack gap={2} marginLeft={5}>
+    <Box bg="gray.100" minH="100vh">
+      <Container maxW="container.xl" py="4">
+        <Flex justify="space-between" align="center" mb="4">
           <Text
-            fontFamily={"cursive"}
-            fontSize="2xl"
+            fontFamily="cursive"
+            fontSize="3xl"
             color="teal.600"
-            fontWeight={600}
+            fontWeight="bold"
           >
             Weather App
           </Text>
-        </HStack>
-        <Box>
           <Search
             onChange={(e) => setCity(e.target.value)}
             onClick={handleClick}
           />
+        </Flex>
+        <HStack>
+          <Weather data={data} />
+          <Othercities />
+        </HStack>
+        <Box mt="8">
+          {forecast.length > 0 && <ForeCastChart data={forecast} />}
         </Box>
-      </SimpleGrid>
-      <Box>
-        <Weather data={data} />
-      </Box>
-      <Box width="60%" margin="auto">
-        {forecast.length > 0 ? <ForeCastChart data={forecast} /> : null}
-      </Box>
-      <Othercities />
-      <Footer marginTop="auto" />
+      </Container>
+      <Footer />
     </Box>
   );
 };
